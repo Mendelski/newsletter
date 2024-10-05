@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TopicRequest;
 use App\Http\Resources\TopicResource;
 use App\Models\Topic;
+use App\Notifications\TopicFollowedNotification;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class TopicController extends Controller
@@ -64,6 +65,7 @@ class TopicController extends Controller
         $this->authorize('follow', $topic);
 
         $topic->followers()->attach(auth()->id());
+        auth()->user()->notify(new TopicFollowedNotification($topic));
 
         return response()->json();
     }

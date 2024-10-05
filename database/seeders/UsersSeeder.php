@@ -14,13 +14,13 @@ class UsersSeeder extends Seeder
     {
         $admin = User::updateOrCreate([
             'name' => 'Admin',
-            'email' => 'admin@themembers.com',
+            'email' => 'admin@themembers.com.br',
             'password' => bcrypt('password'),
         ]);
 
         $writer = User::updateOrCreate([
             'name' => 'User',
-            'email' => 'writer@themembers.com',
+            'email' => 'writer@themembers.com.br',
             'password' => bcrypt('password'),
         ]);
 
