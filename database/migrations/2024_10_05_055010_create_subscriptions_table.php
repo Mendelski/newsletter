@@ -8,12 +8,10 @@ return new class extends Migration
 {
     public function up(): void
     {
-        Schema::create('posts', function (Blueprint $table) {
+        Schema::create('subscriptions', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('title');
-            $table->longText('body');
+            $table->foreignId('user_id');
             $table->foreignUuid('topic_id');
-            $table->foreignId('user_id')->comment('Author of the post');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -21,6 +19,6 @@ return new class extends Migration
 
     public function down(): void
     {
-        Schema::dropIfExists('posts');
+        Schema::dropIfExists('subscriptions');
     }
 };

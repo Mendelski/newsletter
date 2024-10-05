@@ -38,4 +38,9 @@ class TopicPolicy
     {
         return $user->hasRole('admin');
     }
+
+    public function follow(): true
+    {
+        return true;
+    }
 }

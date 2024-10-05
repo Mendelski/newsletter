@@ -24,14 +24,7 @@ class UsersSeeder extends Seeder
             'password' => bcrypt('password'),
         ]);
 
-        $user = User::updateOrCreate([
-            'name' => 'User',
-            'email' => 'user@themembers.com',
-            'password' => bcrypt('password'),
-        ]);
-
-        $admin->assignRole('admin');
-        $writer->assignRole('writer');
-        $user->assignRole('user');
+        $admin->assignRole('admin')->markEmailAsVerified();
+        $writer->assignRole('writer')->markEmailAsVerified();
     }
 }

@@ -8,9 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Posts extends Model
+/**
+ * @property string $id
+ * @property string $title
+ * @property string $body
+ * @property string $topic_id
+ * @property string $user_id
+ */
+class Post extends Model
 {
-    use HasUuids, HasUuids, SoftDeletes, HasFactory;
+    use HasFactory, HasUuids, SoftDeletes;
 
     protected $fillable = [
         'title',

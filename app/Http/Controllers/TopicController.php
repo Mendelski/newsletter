@@ -49,4 +49,31 @@ class TopicController extends Controller
 
         return response()->json();
     }
+
+    public function restore(Topic $topic)
+    {
+        $this->authorize('restore', $topic);
+
+        $topic->restore();
+
+        return new TopicResource($topic);
+    }
+
+    public function follow(Topic $topic)
+    {
+        $this->authorize('follow', $topic);
+
+        $topic->followers()->attach(auth()->id());
+
+        return response()->json();
+    }
+
+    public function unfollow(Topic $topic)
+    {
+        $this->authorize('unfollow', $topic);
+
+        $topic->followers()->detach(auth()->id());
+
+        return response()->json();
+    }
 }
