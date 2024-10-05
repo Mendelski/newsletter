@@ -4,15 +4,15 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class TopicRequest extends FormRequest
+class PostsRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'name' => ['required'],
-            'slug' => ['required', 'unique:topics'],
-            'description' => ['nullable'],
-            'active_at' => ['nullable', 'date'],
+            'title' => ['required'],
+            'body' => ['required'],
+            'topic_id' => ['required', 'exists:topics'],
+            'user_id' => ['required', 'exists:users'],
         ];
     }
 
