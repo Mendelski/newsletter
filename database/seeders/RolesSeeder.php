@@ -11,16 +11,16 @@ class RolesSeeder extends Seeder
     /**
      * Run the database seeds.
      */
-     public function run(): void
-     {
-         app()[PermissionRegistrar::class]->forgetCachedPermissions();
+    public function run(): void
+    {
+        app()[PermissionRegistrar::class]->forgetCachedPermissions();
 
-         $adminRole = Role::firstOrCreate(['name' => 'admin']);
-         $adminRole->givePermissionTo(['manage topics', 'write topics', 'delete topics', 'edit topics']);
+        $adminRole = Role::firstOrCreate(['name' => 'admin']);
+        $adminRole->givePermissionTo(['manage topics', 'write topics', 'delete topics', 'edit topics']);
 
-         $writerRole = Role::firstOrCreate(['name' => 'writer']);
-         $writerRole->givePermissionTo(['write posts', 'manage own posts']);
+        $writerRole = Role::firstOrCreate(['name' => 'writer']);
+        $writerRole->givePermissionTo(['write posts', 'manage own posts']);
 
-         Role::firstOrCreate(['name' => 'user']);
-     }
+        Role::firstOrCreate(['name' => 'user']);
+    }
 }
