@@ -1,5 +1,6 @@
-## Desafio - Newsletter System
+## Desafio - Newsletter System 
 Sistema de newsletter
+
 
 # Descrição
 O sistema permitirá que um usuário admin crie tópicos (temas de interesse) e gerencie postagens nos mesmos. Usuários cadastrados em tópcios deverão receber emails a cada nova postagem.
@@ -30,3 +31,11 @@ Encaminhar link do repositório com as instruções para rodar o projeto: lucas.
 
 ## Observação:
 Este é um teste para sênior. Não se limite a soluções simplistas. Considere expressar todos os conhecimentos que você achar válido.
+
+---
+
+## Observações sobre decisões tomadas 
+- Tendo em vista ser apenas um teste, bastaria adicionar um campo `is_admin` e isso resolveria as necessidades de permições de acesso. 
+Porém, para fins de demonstração, optei por implementar um sistema de permissões mais robusto garantindo a escalabilidade do projeto. Pacote [spatie/laravel-permission](https://spatie.be/docs/laravel-permission/v6/introduction).
+
+## Instruções para rodar o projeto
