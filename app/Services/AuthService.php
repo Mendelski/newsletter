@@ -24,4 +24,21 @@ class AuthService
 
         return $user->createToken('accessToken')->plainTextToken;
     }
+
+    public static function isAdmin(User $user): bool
+    {
+        return $user->hasRole('admin');
+    }
+
+    public static function changeRole(string $userId, array $roles): array
+    {
+        $user = User::find($userId);
+        $user->syncRoles($roles);
+
+        return [
+            'name' => $user->name,
+            'email' => $user->email,
+            'roles' => $roles
+        ];
+    }
 }

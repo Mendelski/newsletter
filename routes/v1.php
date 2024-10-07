@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\v1\Auth\AuthController;
+use App\Http\Controllers\v1\Auth\PermissionController;
 use App\Http\Controllers\v1\PostController;
 use App\Http\Controllers\v1\TopicController;
 use Illuminate\Http\Request;
@@ -17,6 +18,7 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::post('/change-role', [PermissionController::class, 'changeRole']);
 
     Route::controller(PostController::class)->group(function () {
         Route::group(['prefix' => 'posts'], function () {
