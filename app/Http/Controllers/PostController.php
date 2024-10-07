@@ -14,7 +14,6 @@ class PostController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Post::class);
-
         return PostsResource::collection(Post::all());
     }
 

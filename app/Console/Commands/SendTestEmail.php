@@ -25,11 +25,12 @@ class SendTestEmail extends Command
 
         if (empty($workersRunning)) {
             $this->error('Queue worker is not running. Please run "./vendor/bin/sail artisan queue:work" before sending the email.');
+
             return;
         }
 
         $user = User::first();
-        if(!$user){
+        if (! $user) {
             $this->info('User not found, creating a new one...');
             $user = User::factory()->create();
         }
@@ -38,7 +39,7 @@ class SendTestEmail extends Command
         if ($user && $topic) {
             $user->notify(new TopicFollowedNotification($topic));
 
-            $this->info('Test email should be sent to ' . $user->email . 'successfully.');
+            $this->info('Test email should be sent to '.$user->email.'successfully.');
         } else {
             $this->error('User or Topic not found.');
         }
