@@ -29,7 +29,6 @@ class TopicFollowedNotification extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('Hey, what\'s up? We have a new post for you!')
             ->line("New post in topic you follow: {$this->topic->name}")
-            ->action('View post', url('/'));
-
+            ->line('Check it out in our website!');
     }
 }

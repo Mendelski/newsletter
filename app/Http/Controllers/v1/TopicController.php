@@ -9,6 +9,7 @@ use App\Models\Topic;
 use App\Notifications\TopicFollowedNotification;
 use App\Services\ApiReturnService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class TopicController extends Controller
@@ -65,7 +66,7 @@ class TopicController extends Controller
         return new TopicResource($topic);
     }
 
-    public function follow(Topic $topic)
+    public function follow(Topic $topic): JsonResponse
     {
         $this->authorize('follow', Topic::class);
 

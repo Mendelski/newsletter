@@ -38,7 +38,7 @@ class AuthService
         return [
             'name' => $user->name,
             'email' => $user->email,
-            'roles' => $roles
+            'roles' => $roles,
         ];
     }
 }

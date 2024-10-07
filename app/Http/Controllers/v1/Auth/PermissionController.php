@@ -11,7 +11,7 @@ class PermissionController extends Controller
 {
     public function changeRole(RoleRequest $request)
     {
-        if(!AuthService::isAdmin($request->user())) {
+        if (! AuthService::isAdmin($request->user())) {
             return ApiReturnService::apiReturnError([], 'You are not authorized to perform this action');
         }
 

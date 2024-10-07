@@ -24,9 +24,9 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::group(['prefix' => 'posts'], function () {
             Route::get('/', 'index')->name('posts.index');
             Route::post('/', 'store')->name('posts.store');
-            Route::get('/{posts}', 'show')->name('posts.show');
-            Route::put('/{posts}', 'update')->name('posts.update');
-            Route::delete('/{posts}', 'destroy')->name('posts.destroy');
+            Route::get('/{post}', 'show')->name('posts.show');
+            Route::put('/{post}', 'update')->name('posts.update');
+            Route::delete('/{post}', 'destroy')->name('posts.destroy');
             Route::post('/restore', 'restore')->name('posts.restore');
         });
     });
@@ -35,12 +35,12 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::group(['prefix' => 'topics'], function () {
             Route::get('/', 'index')->name('topics.index');
             Route::post('/', 'store')->name('topics.store');
-            Route::get('/{topics}', 'show')->name('topics.show');
-            Route::put('/{topics}', 'update')->name('topics.update');
-            Route::delete('/{topics}', 'destroy')->name('topics.destroy');
+            Route::get('/{topic}', 'show')->name('topics.show');
+            Route::put('/{topic}', 'update')->name('topics.update');
+            Route::delete('/{topic}', 'destroy')->name('topics.destroy');
             Route::post('/restore', 'restore')->name('topics.restore');
-            Route::get('/{topics}/follow', 'follow')->name('topics.follow');
-            Route::get('/{topics}/unfollow', 'unfollow')->name('topics.unfollow');
+            Route::get('/{topic}/follow', 'follow')->name('topics.follow');
+            Route::get('/{topic}/unfollow', 'unfollow')->name('topics.unfollow');
         });
     });
 });

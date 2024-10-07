@@ -44,8 +44,8 @@ class TopicPolicy
         return true;
     }
 
-    public function unfollow()
+    public function unfollow(): true
     {
-
+        return true;
     }
 }

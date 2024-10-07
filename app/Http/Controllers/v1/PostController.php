@@ -27,27 +27,27 @@ class PostController extends Controller
         return new PostsResource(Post::create($request->validated()));
     }
 
-    public function show(Post $posts)
+    public function show(Post $post)
     {
-        $this->authorize('view', $posts);
+        $this->authorize('view', $post);
 
-        return new PostsResource($posts);
+        return new PostsResource($post);
     }
 
-    public function update(PostsRequest $request, Post $posts)
+    public function update(PostsRequest $request, Post $post)
     {
-        $this->authorize('update', $posts);
+        $this->authorize('update', $post);
 
-        $posts->update($request->validated());
+        $post->update($request->validated());
 
-        return new PostsResource($posts);
+        return new PostsResource($post);
     }
 
-    public function destroy(Post $posts)
+    public function destroy(Post $post)
     {
         $this->authorize('delete', Post::class);
 
-        $posts->delete();
+        $post->delete();
 
         return response()->json();
     }

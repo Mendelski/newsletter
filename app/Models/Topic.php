@@ -21,7 +21,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Topic extends Model
 {
-    use HasFactory, HasUuids, SoftDeletes;
+    use HasFactory;
+    use HasUuids;
+    use SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -32,7 +34,8 @@ class Topic extends Model
 
     public function followers(): BelongsToMany
     {
-        return $this->belongsToMany(User::class, 'subscriptions');
+        return $this->belongsToMany(User::class, 'subscriptions', 'topic_id', 'user_id')
+            ->withTimestamps();
     }
 
     public function posts(): HasMany

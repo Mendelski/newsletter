@@ -9,11 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('subscriptions', function (Blueprint $table) {
-            $table->uuid('id')->primary();
             $table->foreignId('user_id');
             $table->foreignUuid('topic_id');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

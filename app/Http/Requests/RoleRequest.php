@@ -24,7 +24,7 @@ class RoleRequest extends FormRequest
     {
         return [
             'user_id' => 'required|exists:users,id',
-            'roles' => 'required|array'
+            'roles' => 'required|array',
         ];
     }
 }
