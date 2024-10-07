@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\PostsRequest;
 use App\Http\Resources\PostsResource;
 use App\Models\Post;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
@@ -14,6 +16,7 @@ class PostController extends Controller
     public function index()
     {
         $this->authorize('viewAny', Post::class);
+
         return PostsResource::collection(Post::all());
     }
 
@@ -42,17 +45,18 @@ class PostController extends Controller
 
     public function destroy(Post $posts)
     {
-        $this->authorize('delete', $posts);
+        $this->authorize('delete', Post::class);
 
         $posts->delete();
 
         return response()->json();
     }
 
-    public function restore(Post $posts)
+    public function restore(Request $request)
     {
-        $this->authorize('restore', $posts);
+        $this->authorize('restore', Post::class);
 
+        $posts = Post::withTrashed()->find($request->input('id'));
         $posts->restore();
 
         return new PostsResource($posts);

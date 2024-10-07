@@ -19,12 +19,12 @@ class TopicFollowedNotification extends Notification implements ShouldQueue
         $this->topic = $topic;
     }
 
-    public function via($notifiable): array
+    public function via(): array
     {
         return ['mail'];
     }
 
-    public function toMail($notifiable): MailMessage
+    public function toMail(): MailMessage
     {
         return (new MailMessage)
             ->subject('Hey, what\'s up? We have a new post for you!')

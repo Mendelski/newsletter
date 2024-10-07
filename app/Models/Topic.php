@@ -30,13 +30,6 @@ class Topic extends Model
         'active_at',
     ];
 
-    protected function casts(): array
-    {
-        return [
-            'active_at' => 'timestamp',
-        ];
-    }
-
     public function followers(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'subscriptions');
@@ -45,5 +38,12 @@ class Topic extends Model
     public function posts(): HasMany
     {
         return $this->hasMany(Post::class);
+    }
+
+    protected function casts(): array
+    {
+        return [
+            'active_at' => 'timestamp',
+        ];
     }
 }

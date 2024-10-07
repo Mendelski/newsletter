@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\v1;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\TopicRequest;
 use App\Http\Resources\TopicResource;
 use App\Models\Topic;
 use App\Notifications\TopicFollowedNotification;
+use App\Services\ApiReturnService;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Http\Request;
 
 class TopicController extends Controller
 {
@@ -48,12 +51,14 @@ class TopicController extends Controller
 
         $topic->delete();
 
-        return response()->json();
+        return ApiReturnService::apiReturnSuccess([], 'Topic deleted successfully');
     }
 
-    public function restore(Topic $topic)
+    public function restore(Request $request)
     {
-        $this->authorize('restore', $topic);
+        $topic = Topic::withTrashed()->find($request->input('id'));
+
+        $this->authorize('restore', Topic::class);
 
         $topic->restore();
 
@@ -62,20 +67,21 @@ class TopicController extends Controller
 
     public function follow(Topic $topic)
     {
-        $this->authorize('follow', $topic);
+        $this->authorize('follow', Topic::class);
 
         $topic->followers()->attach(auth()->id());
+
         auth()->user()->notify(new TopicFollowedNotification($topic));
 
-        return response()->json();
+        return ApiReturnService::apiReturnSuccess([], 'Topic followed successfully');
     }
 
     public function unfollow(Topic $topic)
     {
-        $this->authorize('unfollow', $topic);
+        $this->authorize('unfollow', Topic::class);
 
         $topic->followers()->detach(auth()->id());
 
-        return response()->json();
+        return ApiReturnService::apiReturnSuccess([], 'Topic unfollowed successfully');
     }
 }

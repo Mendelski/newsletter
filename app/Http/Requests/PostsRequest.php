@@ -11,8 +11,8 @@ class PostsRequest extends FormRequest
         return [
             'title' => ['required'],
             'body' => ['required'],
-            'topic_id' => ['required', 'exists:topics'],
-            'user_id' => ['required', 'exists:users'],
+            'topic_id' => ['required', 'exists:topics,id'],
+            'user_id' => ['required', 'exists:users,id'],
         ];
     }
 
