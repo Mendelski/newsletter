@@ -27,7 +27,7 @@ class TopicFollowedNotification extends Notification implements ShouldQueue
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject('New post in topic you follow')
+            ->subject('Hey, what\'s up? We have a new post for you!')
             ->line("New post in topic you follow: {$this->topic->name}")
             ->action('View post', url('/'));
 
