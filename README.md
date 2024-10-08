@@ -32,10 +32,21 @@ Encaminhar link do repositório com as instruções para rodar o projeto: lucas.
 ## Observação:
 Este é um teste para sênior. Não se limite a soluções simplistas. Considere expressar todos os conhecimentos que você achar válido.
 
----
-
-## Observações sobre decisões tomadas 
-- Tendo em vista ser apenas um teste, bastaria adicionar um campo `is_admin` e isso resolveria as necessidades de permições de acesso. 
-Porém, para fins de demonstração, optei por implementar um sistema de permissões mais robusto garantindo a escalabilidade do projeto. Pacote [spatie/laravel-permission](https://spatie.be/docs/laravel-permission/v6/introduction).
-
 ## Instruções para rodar o projeto
+
+Antes de tudo é necessário que você tenha o docker instalado na sua máquina, e caso utilize windows, que tenha um ambiente WSL2 configurado. 
+
+1. Clone o repositório
+2. Acesse a pasta do projeto
+3. Execute o comando `./vendor/bin/sail up -d`
+4. Execute o comando `./vendor/bin/sail artisan migrate --seed`
+
+Pronto! O projeto está rodando. 
+
+### Testes
+
+- Atenção: Ao rodar os testes o banco será resetado, então se você já tiver rodado o comando `./vendor/bin/sail artisan migrate --seed`, será necessário rodar novamente.
+Para rodar os testes, execute o comando `./vendor/bin/sail artisan test`
+
+### Documentação da API
+A collection do postman está disponível no arquivo `newsletter.postman_collection.json` na raiz do projeto.

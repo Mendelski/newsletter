@@ -57,9 +57,15 @@ class TopicController extends Controller
 
     public function restore(Request $request)
     {
-        $topic = Topic::withTrashed()->find($request->input('id'));
+
+        $id = $request->input('id');
+        $topic = Topic::withTrashed()->find($id);
 
         $this->authorize('restore', Topic::class);
+
+        if(!$topic) {
+            return ApiReturnService::apiReturnError([], 'Topic not found');
+        }
 
         $topic->restore();
 
