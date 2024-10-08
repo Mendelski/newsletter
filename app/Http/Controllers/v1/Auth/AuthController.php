@@ -12,7 +12,7 @@ use Illuminate\Http\Request;
 
 class AuthController extends Controller
 {
-    public function register(RegisterUserRequest $request): JsonResponse
+    public function registerUser(RegisterUserRequest $request): JsonResponse
     {
         $token = AuthService::register($request->validated());
 
@@ -32,13 +32,13 @@ class AuthController extends Controller
             return ApiReturnService::apiReturnSuccess(['token' => $token]);
         }
 
-        return ApiReturnService::apiReturnError([], 'Invalid credentials');
+        return ApiReturnService::apiReturnError([], 'Invalid credentials', 401);
     }
 
     public function logout(Request $request)
     {
         $request->user()->tokens()->delete();
 
-        return ApiReturnService::apiReturnSuccess([], 'Logout successful');
+        return ApiReturnService::apiReturnSuccess([], '', 204);
     }
 }

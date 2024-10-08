@@ -8,7 +8,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Carbon;
 
-class PostsFactory extends Factory
+class PostFactory extends Factory
 {
     protected $model = Post::class;
 

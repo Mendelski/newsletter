@@ -4,7 +4,7 @@ namespace App\Http\Controllers\v1;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostsRequest;
-use App\Http\Resources\PostsResource;
+use App\Http\Resources\PostResource;
 use App\Models\Post;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Http\Request;
@@ -17,21 +17,21 @@ class PostController extends Controller
     {
         $this->authorize('viewAny', Post::class);
 
-        return PostsResource::collection(Post::all());
+        return PostResource::collection(Post::all());
     }
 
     public function store(PostsRequest $request)
     {
         $this->authorize('create', Post::class);
 
-        return new PostsResource(Post::create($request->validated()));
+        return new PostResource(Post::create($request->validated()));
     }
 
     public function show(Post $post)
     {
         $this->authorize('view', $post);
 
-        return new PostsResource($post);
+        return new PostResource($post);
     }
 
     public function update(PostsRequest $request, Post $post)
@@ -40,12 +40,12 @@ class PostController extends Controller
 
         $post->update($request->validated());
 
-        return new PostsResource($post);
+        return new PostResource($post);
     }
 
     public function destroy(Post $post)
     {
-        $this->authorize('delete', Post::class);
+        $this->authorize('delete', $post);
 
         $post->delete();
 
@@ -59,6 +59,6 @@ class PostController extends Controller
         $posts = Post::withTrashed()->find($request->input('id'));
         $posts->restore();
 
-        return new PostsResource($posts);
+        return new PostResource($posts);
     }
 }
