@@ -20,10 +20,10 @@ it('registers a user successfully', function () {
         ->assertJsonStructure([
             'message',
             'data' => ['token'],
-            'error'
+            'error',
         ])->assertJson([
             'message' => 'Success',
-            'error' => false
+            'error' => false,
         ]);
 });
 
@@ -38,11 +38,11 @@ it('fails to register a user with missing fields', function () {
         ->assertJsonStructure([
             'message',
             'errors' => [
-                'name' =>[],
-                'email' =>[],
-                'password'=>[]
+                'name' => [],
+                'email' => [],
+                'password' => [],
             ],
-    ]);
+        ]);
 });
 
 it('logs in a user successfully', function () {
@@ -61,10 +61,10 @@ it('logs in a user successfully', function () {
         ->assertJsonStructure([
             'message',
             'data' => ['token'],
-            'error'
+            'error',
         ])->assertJson([
             'message' => 'Success',
-            'error' => false
+            'error' => false,
         ]);
 });
 
@@ -76,12 +76,12 @@ it('fails to log in with invalid credentials', function () {
 
     $response->assertStatus(401)
         ->assertJsonStructure([
-        'message',
-        'error'
-    ])->assertJson([
-        'message' => 'Invalid credentials',
-        'error' => true
-    ]);
+            'message',
+            'error',
+        ])->assertJson([
+            'message' => 'Invalid credentials',
+            'error' => true,
+        ]);
 });
 
 it('logs out a user successfully', function () {
@@ -101,7 +101,7 @@ it('changes role successfully', function () {
     $user = User::factory()->create();
     $response = $this->postJson(route('v1.changeRole'), [
         'user_id' => $user->id,
-        'roles' => ['admin']
+        'roles' => ['admin'],
     ]);
 
     expect($user->hasRole('admin'))->toBeTrue();
@@ -111,7 +111,7 @@ it('changes role successfully', function () {
 it('returns unauthorized when changing role without authentication', function () {
     $response = $this->postJson(route('v1.changeRole'), [
         'user_id' => 1,
-        'role' => 'admin'
+        'role' => 'admin',
     ]);
 
     $response->assertStatus(401);
@@ -123,7 +123,7 @@ it('returns validation error for invalid role', function () {
 
     $response = $this->postJson(route('v1.changeRole'), [
         'user_id' => $user->id,
-        'roles' => ['invalid_role']
+        'roles' => ['invalid_role'],
     ]);
 
     $response->assertStatus(400);
