@@ -47,6 +47,8 @@ Pronto! O projeto está rodando.
 
 - Atenção: Ao rodar os testes o banco será resetado, então se você já tiver rodado o comando `./vendor/bin/sail artisan migrate --seed`, será necessário rodar novamente.
 Para rodar os testes, execute o comando `./vendor/bin/sail artisan test`
+- Foi construido o comando `./vendor/bin/sail artisan email:send-test para enviar um email de teste e verificar se o envio de email está funcionando corretamente.
+- Para visualizar os emails enviados, acesse o link `http://localhost:8025/` no seu navegador.
 
 ### Documentação da API
-A collection do postman está disponível no arquivo `newsletter.postman_collection.json` na raiz do projeto.
+A collection do postman está disponível no arquivo `Newsletter.postman_collection.json` na raiz do projeto.

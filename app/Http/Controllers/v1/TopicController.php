@@ -63,7 +63,7 @@ class TopicController extends Controller
 
         $this->authorize('restore', Topic::class);
 
-        if(!$topic) {
+        if (! $topic) {
             return ApiReturnService::apiReturnError([], 'Topic not found');
         }
 
